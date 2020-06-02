@@ -25,7 +25,8 @@ class PointsController {
     // trx extends for 'transacation'. it means that, if the first query fails, the second one will not be executed
     const trx = await knex.transaction();
   
-    const point = { image: 'image_fake', name, email, whatsapp, latitude, longitude, city, uf };
+    const image = 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60';
+    const point = { image, name, email, whatsapp, latitude, longitude, city, uf };
 
     const insertedIds = await trx('points').insert(point);
   
