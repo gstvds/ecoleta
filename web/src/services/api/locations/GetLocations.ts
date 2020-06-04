@@ -1,4 +1,4 @@
-import AbstractEcoleta from '../AbstractEcoleta';
+import AbstractEcoleta from '../../AbstractEcoleta';
 
 interface UFResponse {
   id: number;

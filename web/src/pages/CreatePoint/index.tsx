@@ -3,13 +3,12 @@ import { useHistory } from 'react-router-dom';
 import { Map, TileLayer, Marker } from "react-leaflet";
 import { LeafletMouseEvent} from 'leaflet';
 
-import api from "../../services/api";
-import { GetLocations } from "../../services/ecoleta";
+import { GetLocations, Connection } from "../../services";
 
 import "./styles.css";
 
 import Header from "../../components/Header";
-import Alert from "../../components/Alert";
+import Alert from "./Alert";
 
 interface Item {
   id: number;
@@ -37,7 +36,7 @@ const CreatePoint: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    api.get("items").then((response) => setItems(response.data));
+    Connection.fetchItems().then((response) => setItems(response));
 
     GetLocations.searchUF().then((response) => {
       const ufInitials = response.map((uf) => uf.sigla).sort();
@@ -83,15 +82,14 @@ const CreatePoint: React.FC = () => {
   async function handleSubmit(event: ChangeEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    // const { name, email, whatsapp } = formData;
-    // const uf = selectedUF;
-    // const city = selectedCity;
-    // const [latitude, longitude] = selectedPosition;
-    // const items = selectedItems;
+    const { name, email, whatsapp } = formData;
+    const uf = selectedUF;
+    const city = selectedCity;
+    const [latitude, longitude] = selectedPosition;
+    const items = selectedItems;
 
-    // const data = { name, email, whatsapp, uf, city, latitude, longitude, items };
-    // await api.post('points', data);
-    
+    const data = { name, email, whatsapp, uf, city, latitude, longitude, items };
+    await Connection.createPoint(data);
     setSuccess(true);
 
     setTimeout(() => {
