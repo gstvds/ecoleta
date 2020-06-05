@@ -6,23 +6,12 @@ interface Item {
   image_url: string;
 }
 
-interface PointData {
-  name: string;
-  email: string;
-  whatsapp: string;
-  uf: string
-  city: string;
-  latitude: number;
-  longitude: number;
-  items: number[];
-}
-
 class Connection extends AbstractEcoleta {
   async fetchItems(): Promise<Item[]> {
     return (await this.request('items'));
   }
 
-  async createPoint(data: PointData) {
+  async createPoint(data: FormData) {
     await this.request('points', data, 'post');
   }
 };
