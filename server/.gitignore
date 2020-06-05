@@ -1,1 +1,3 @@
 *.sqlite
+uploads/*
+!uploads/*.svg
