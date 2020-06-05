@@ -8,6 +8,7 @@ import { GetLocations, Connection } from "../../services";
 import "./styles.css";
 
 import Header from "../../components/Header";
+import Dropzone from '../../components/Dropzone';
 import Alert from "./Alert";
 
 interface Item {
@@ -108,6 +109,7 @@ const CreatePoint: React.FC = () => {
       <Header create />
       <form onSubmit={handleSubmit}>
         <h1>Cadastro do<br />ponto de coleta</h1>
+        <Dropzone />
         <fieldset>
           <legend>
             <h2>Dados</h2>
